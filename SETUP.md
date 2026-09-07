@@ -64,8 +64,24 @@ To send alerts to a different address (e.g. `ferrovaliving@gmail.com`) or from
 your own domain, verify a domain in Resend → **Domains**, then also set
 `LEAD_NOTIFY_FROM` = `Ferrova Living <hello@yourdomain.com>`.
 
-The email is best-effort: if Resend is down or misconfigured, the enquiry is
-still saved to the database.
+### WhatsApp alert too (optional, ~2 min)
+
+Simplest option is CallMeBot (free, unofficial — fine for pinging yourself):
+
+1. On the phone you want alerts on, add **+34 644 51 95 23** to your contacts.
+2. WhatsApp it exactly: **`I allow callmebot to send me messages`**
+3. It replies with your personal **API key**.
+4. In Vercel env vars add:
+   - `WHATSAPP_TO` = your number, country code first, digits only (e.g. `919024807898`)
+   - `WHATSAPP_CALLMEBOT_APIKEY` = the key it sent you
+5. Redeploy.
+
+For something more robust, use Twilio instead: set `TWILIO_ACCOUNT_SID`,
+`TWILIO_AUTH_TOKEN`, `TWILIO_WHATSAPP_FROM` (and `WHATSAPP_TO`). Twilio needs an
+approved WhatsApp sender.
+
+Both alerts are best-effort and run in parallel: if Resend or WhatsApp fails,
+the enquiry is still saved to the database and the other alert still goes out.
 
 ## 5. Edit the live site from /admin, no redeploy (optional, ~10 min)
 
