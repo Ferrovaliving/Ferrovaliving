@@ -30,18 +30,22 @@ export async function readContent(): Promise<Content> {
   const file = await readFileContent();
 
   if (sbReadable) {
-    const [site, about, testimonials, projects] = await Promise.all([
-      sbGet("site"),
-      sbGet("about"),
-      sbGet("testimonials"),
-      sbGet("projects"),
-    ]);
-    return {
-      about: (about as About) ?? (file.about as About),
-      testimonials: (testimonials as Testimonial[]) ?? file.testimonials ?? [],
-      projects: (projects as Project[]) ?? file.projects ?? [],
-      site: withSiteDefaults((site as Content["site"]) ?? file.site),
-    };
+    try {
+      const [site, about, testimonials, projects] = await Promise.all([
+        sbGet("site"),
+        sbGet("about"),
+        sbGet("testimonials"),
+        sbGet("projects"),
+      ]);
+      return {
+        about: (about as About) ?? (file.about as About),
+        testimonials: (testimonials as Testimonial[]) ?? file.testimonials ?? [],
+        projects: (projects as Project[]) ?? file.projects ?? [],
+        site: withSiteDefaults((site as Content["site"]) ?? file.site),
+      };
+    } catch {
+      // fall through to file-only content
+    }
   }
 
   return {

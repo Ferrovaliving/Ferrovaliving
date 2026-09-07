@@ -13,13 +13,17 @@ export const sbWritable = Boolean(SB_URL && SERVICE && !SB_URL.includes("your-pr
 
 type Json = unknown;
 
-/** Read one content_store row's `data`, or null when absent/unreachable. */
+/** Read one content_store row's `data`, or null when absent/unreachable/slow. */
 export async function sbGet(key: string): Promise<Json | null> {
   if (!sbReadable) return null;
   try {
     const res = await fetch(
       `${SB_URL}/rest/v1/content_store?key=eq.${encodeURIComponent(key)}&select=data`,
-      { headers: { apikey: ANON, Authorization: `Bearer ${ANON}` }, cache: "no-store" },
+      {
+        headers: { apikey: ANON, Authorization: `Bearer ${ANON}` },
+        cache: "no-store",
+        signal: AbortSignal.timeout(4000),
+      },
     );
     if (!res.ok) return null;
     const rows = (await res.json()) as { data: Json }[];
@@ -41,6 +45,7 @@ export async function sbSet(key: string, data: Json): Promise<void> {
       Prefer: "resolution=merge-duplicates,return=minimal",
     },
     body: JSON.stringify({ key, data, updated_at: new Date().toISOString() }),
+    signal: AbortSignal.timeout(10000),
   });
   if (!res.ok) {
     throw new Error(`Content save failed (${res.status}): ${await res.text().catch(() => "")}`);
