@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { sbReadable, sbGet } from "./supabase-server";
 
 export type CatalogProduct = { id: string; image: string; visible: boolean; name?: string };
 export type CatalogCategory = {
@@ -13,11 +14,21 @@ export type Catalog = { categories: CatalogCategory[] };
 
 const FILE = path.join(process.cwd(), "data", "catalog.json");
 
+function normalise(data: unknown): Catalog {
+  if (!data || !Array.isArray((data as Catalog).categories)) return { categories: [] };
+  return data as Catalog;
+}
+
 export async function readCatalog(): Promise<Catalog> {
-  const raw = await readFile(FILE, "utf8");
-  const data = JSON.parse(raw) as Catalog;
-  if (!data || !Array.isArray(data.categories)) return { categories: [] };
-  return data;
+  if (sbReadable) {
+    const stored = await sbGet("catalog");
+    if (stored) return normalise(stored);
+  }
+  try {
+    return normalise(JSON.parse(await readFile(FILE, "utf8")));
+  } catch {
+    return { categories: [] };
+  }
 }
 
 /** Only visible categories and visible products — for the public site. */

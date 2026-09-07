@@ -67,9 +67,21 @@ your own domain, verify a domain in Resend → **Domains**, then also set
 The email is best-effort: if Resend is down or misconfigured, the enquiry is
 still saved to the database.
 
-### What Supabase does *not* change yet
+## 5. Edit the live site from /admin, no redeploy (optional, ~10 min)
 
-The public pages still read all their content from `data/*.json`, edited locally
-in `/admin/*` and shipped by pushing to `main`. Moving live content editing into
-Supabase (so you can edit the deployed site with no redeploy) is a larger,
-separate task — the schema is already there for it.
+By default the deployed site reads content from `data/*.json` — to change it you
+edit locally and push. This makes `/admin` write to Supabase instead, so changes
+publish instantly.
+
+1. **SQL Editor** → paste [`supabase/content-store.sql`](supabase/content-store.sql) → Run.
+2. **Project Settings → API → Project API keys** → reveal and copy the
+   **`service_role`** key (the secret one — treat it like a password).
+3. Vercel → env vars (all environments), add:
+   - `SUPABASE_SERVICE_ROLE_KEY` = that key
+4. Redeploy.
+
+Now every editor under `/admin` (Site content, Catalog, Projects, Testimonials,
+About) saves straight to the database and the public site reflects it on the
+next page load. The `data/*.json` files stay as the starting content — a section
+is only taken over by the database the first time you save it. Uploaded images
+go to the Supabase `media` bucket.

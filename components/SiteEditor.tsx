@@ -68,7 +68,7 @@ export function SiteEditor({ initial }: { initial: Content }) {
     setSaving(true);
     setErr("");
     try {
-      await saveContent({ ...initial, site });
+      await saveContent({ ...initial, site }, ["site"]);
       setDirty(false);
       flash("Saved and published ✓");
       router.refresh();

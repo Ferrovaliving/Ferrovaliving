@@ -44,7 +44,7 @@ export function TestimonialsEditor({ initial }: { initial: Content }) {
     setSaving(true);
     setErr("");
     try {
-      await saveContent({ ...initial, testimonials: items });
+      await saveContent({ ...initial, testimonials: items }, ["testimonials"]);
       setDirty(false);
       flash("Saved and published ✓");
       router.refresh();

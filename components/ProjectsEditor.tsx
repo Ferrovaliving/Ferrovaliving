@@ -65,7 +65,7 @@ export function ProjectsEditor({ initial }: { initial: Content }) {
     setSaving(true);
     setErr("");
     try {
-      await saveContent({ ...initial, projects: items });
+      await saveContent({ ...initial, projects: items }, ["projects"]);
       setDirty(false);
       flash("Saved and published ✓");
       router.refresh();

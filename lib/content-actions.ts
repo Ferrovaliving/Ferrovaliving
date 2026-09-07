@@ -5,14 +5,21 @@ import path from "node:path";
 import { revalidatePath } from "next/cache";
 import type { Content, NavLink, IconItem, FaqItem, SiteContent } from "./content";
 import { withSiteDefaults } from "./content";
+import { sbReadable, sbWritable, sbSet, sbUploadImage } from "./supabase-server";
 
 const DATA = path.join(process.cwd(), "data", "content.json");
 const UPLOADS = path.join(process.cwd(), "public", "uploads");
 
+export type ContentKey = "site" | "about" | "testimonials" | "projects";
+
 function assertEditable() {
+  // Fine when we can write to Supabase, or when running on a writable filesystem.
+  if (sbWritable) return;
   if (process.env.VERCEL) {
     throw new Error(
-      "Editing is turned off on this hosting (read-only filesystem). Connect Supabase to manage content in production.",
+      sbReadable
+        ? "Add SUPABASE_SERVICE_ROLE_KEY in Vercel to edit content in production."
+        : "Editing is turned off on this hosting (read-only filesystem). Connect Supabase to manage content in production.",
     );
   }
 }
@@ -158,10 +165,17 @@ export async function loadContent(): Promise<Content> {
   return JSON.parse(await readFile(DATA, "utf8")) as Content;
 }
 
-export async function saveContent(next: Content): Promise<{ ok: true }> {
+export async function saveContent(next: Content, keys?: ContentKey[]): Promise<{ ok: true }> {
   assertEditable();
   const clean = sanitise(next);
-  await writeFile(DATA, JSON.stringify(clean, null, 2) + "\n", "utf8");
+
+  if (sbWritable) {
+    const which: ContentKey[] = keys?.length ? keys : ["site", "about", "testimonials", "projects"];
+    await Promise.all(which.map((k) => sbSet(k, clean[k])));
+  } else {
+    await writeFile(DATA, JSON.stringify(clean, null, 2) + "\n", "utf8");
+  }
+
   revalidatePath("/", "layout");
   return { ok: true };
 }
@@ -174,14 +188,19 @@ export async function uploadContentImage(form: FormData): Promise<{ path: string
   if (file.size > 25 * 1024 * 1024) throw new Error("Image must be 25 MB or smaller.");
 
   const { default: sharp } = await import("sharp");
-  const buf = Buffer.from(await file.arrayBuffer());
-  await mkdir(UPLOADS, { recursive: true });
+  const input = Buffer.from(await file.arrayBuffer());
   const base = (file.name.replace(/\.[^.]+$/, "").replace(/[^a-z0-9]+/gi, "-").toLowerCase() || "image").slice(0, 40);
   const name = `${base || "image"}-${Date.now().toString(36)}.webp`;
-  await sharp(buf)
+  const webp = await sharp(input)
     .rotate()
     .resize({ width: 1500, withoutEnlargement: true })
     .webp({ quality: 80 })
-    .toFile(path.join(UPLOADS, name));
+    .toBuffer();
+
+  if (sbWritable) {
+    return { path: await sbUploadImage(webp, name, "image/webp") };
+  }
+  await mkdir(UPLOADS, { recursive: true });
+  await writeFile(path.join(UPLOADS, name), webp);
   return { path: `/uploads/${name}` };
 }

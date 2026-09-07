@@ -26,7 +26,7 @@ export function AboutEditor({ initial }: { initial: Content }) {
     setSaving(true);
     setErr("");
     try {
-      await saveContent({ ...initial, about });
+      await saveContent({ ...initial, about }, ["about"]);
       setDirty(false);
       setMsg("Saved and published ✓");
       setTimeout(() => setMsg(""), 2600);
