@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { configured, insert } from "../lib/supabase";
 import { whatsappUrl, type SiteContent } from "../lib/site-content";
 
 export function EnquiryForm({
@@ -12,29 +11,37 @@ export function EnquiryForm({
   contact: SiteContent["contact"];
 }) {
   const [sent, setSent] = useState("");
+  const [busy, setBusy] = useState(false);
 
   async function submitEnquiry(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = e.currentTarget;
     const fd = new FormData(f);
-    const data = {
-      name: `${fd.get("first") || ""} ${fd.get("last") || ""}`.trim(),
-      email: String(fd.get("email") || ""),
-      phone: String(fd.get("phone") || ""),
-      kind: "homepage",
-      message: `Budget: ${fd.get("budget") || "—"}\nCity: ${fd.get("city") || "—"} ${fd.get("zip") || ""}\n${fd.get("message") || ""}`,
-      status: "new",
-    };
+    setBusy(true);
+    setSent("");
     try {
-      if (configured) await insert("enquiries", data);
-      setSent(
-        configured
-          ? enquiry.success
-          : "Demo submitted. Connect Supabase to store enquiries.",
-      );
-      f.reset();
-    } catch (err) {
-      setSent(err instanceof Error ? err.message : "Unable to send enquiry");
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${fd.get("first") || ""} ${fd.get("last") || ""}`.trim(),
+          email: String(fd.get("email") || ""),
+          phone: String(fd.get("phone") || ""),
+          kind: "homepage",
+          message: `Budget: ${fd.get("budget") || "—"}\nCity: ${fd.get("city") || "—"} ${fd.get("zip") || ""}\n${fd.get("message") || ""}`,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setSent(data.stored ? enquiry.success : "Thanks — we’ve received your message.");
+        f.reset();
+      } else {
+        setSent(data.error || "Unable to send enquiry. Please try WhatsApp or email.");
+      }
+    } catch {
+      setSent("Network error — please try WhatsApp or email.");
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -62,8 +69,8 @@ export function EnquiryForm({
         <input name="phone" placeholder="🇮🇳 Contact number" className="span3" />
         <input name="city" placeholder="City" />
         <input name="zip" placeholder="Zipcode" />
-        <button className="span3" type="submit">
-          Submit
+        <button className="span3" type="submit" disabled={busy}>
+          {busy ? "Sending…" : "Submit"}
         </button>
         {sent && <output className="span3">{sent}</output>}
         <p className="span3 formAlt">

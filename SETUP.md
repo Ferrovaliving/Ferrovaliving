@@ -47,6 +47,26 @@ Then:
 - The enquiry forms write to the `enquiries` table.
 - Sign in at `/login`; view submissions under **Admin → Enquiries**.
 
+## 4. Email alert on every new enquiry (optional, ~5 min)
+
+Without this you have to keep checking `/admin`. With it, each submission also
+lands in your inbox.
+
+1. Sign up at [resend.com](https://resend.com) (free — 100 emails/day).
+2. **API Keys → Create API Key** → copy it.
+3. In Vercel env vars (all environments), add:
+   - `RESEND_API_KEY` = the key
+   - `LEAD_NOTIFY_EMAIL` = where alerts go. **On the free tier this must be the
+     email you signed up to Resend with.**
+4. Redeploy.
+
+To send alerts to a different address (e.g. `ferrovaliving@gmail.com`) or from
+your own domain, verify a domain in Resend → **Domains**, then also set
+`LEAD_NOTIFY_FROM` = `Ferrova Living <hello@yourdomain.com>`.
+
+The email is best-effort: if Resend is down or misconfigured, the enquiry is
+still saved to the database.
+
 ### What Supabase does *not* change yet
 
 The public pages still read all their content from `data/*.json`, edited locally
