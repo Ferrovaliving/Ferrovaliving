@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "../../../components/SiteHeader";
 import { SiteFooter } from "../../../components/SiteFooter";
-import { getPublicCategory } from "../../../lib/catalog";
+import { getPublicCategory, productLabel } from "../../../lib/catalog";
 import { publicContent } from "../../../lib/content";
 
 export const dynamic = "force-dynamic";
@@ -49,11 +49,17 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       <section className="section productsSection">
         <p className="catalogIntro">{site.collectionDetail.intro}</p>
-        <div className="collectionGrid">
+        <div className="collectionGrid collectionGrid--named">
           {cat.products.map((p, i) => (
-            <figure className="collectionItem" key={p.id + i}>
-              <img src={p.image} alt={`${cat.name} — design ${i + 1}`} loading="lazy" />
-            </figure>
+            <Link className="collectionItem" href={`/products/${p.id}`} key={p.id + i}>
+              <span className="collectionItem__img">
+                <img src={p.image} alt={productLabel(p, cat)} loading="lazy" />
+              </span>
+              <span className="collectionItem__cap">
+                <b>{productLabel(p, cat)}</b>
+                {p.model && <em>{p.model}</em>}
+              </span>
+            </Link>
           ))}
         </div>
         <div className="center">

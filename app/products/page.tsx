@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteHeader } from "../../components/SiteHeader";
 import { SiteFooter } from "../../components/SiteFooter";
 import { ProductGallery } from "../../components/ProductGallery";
-import { publicCatalog } from "../../lib/catalog";
+import { publicCatalog, productLabel } from "../../lib/catalog";
 import { publicContent } from "../../lib/content";
 
 export const dynamic = "force-dynamic";
@@ -12,7 +12,15 @@ export default async function Page() {
   const { categories } = await publicCatalog();
   const { site } = await publicContent();
   const cats = categories.map((c) => ({ id: c.id, name: c.name }));
-  const items = categories.flatMap((c) => c.products.map((p) => ({ image: p.image, catId: c.id })));
+  const items = categories.flatMap((c) =>
+    c.products.map((p) => ({
+      id: p.id,
+      image: p.image,
+      catId: c.id,
+      name: productLabel(p, c),
+      model: p.model,
+    })),
+  );
 
   return (
     <main>

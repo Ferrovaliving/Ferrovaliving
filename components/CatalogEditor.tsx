@@ -84,6 +84,14 @@ export function CatalogEditor({ initial }: { initial: Catalog }) {
     mutate((d) =>
       d.map((c, i) => (i === ci ? { ...c, products: c.products.filter((_, j) => j !== pi) } : c)),
     );
+  const setProdField = (ci: number, pi: number, key: "name" | "model" | "description", value: string) =>
+    mutate((d) =>
+      d.map((c, i) =>
+        i === ci
+          ? { ...c, products: c.products.map((p, j) => (j === pi ? { ...p, [key]: value } : p)) }
+          : c,
+      ),
+    );
 
   async function onUpload(ci: number, e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -196,6 +204,30 @@ export function CatalogEditor({ initial }: { initial: Catalog }) {
                   <img src={p.image} alt="" />
                   {cat.hero === p.image && <span className="heroBadge">Tile image</span>}
                   {!p.visible && <span className="offBadge">Hidden</span>}
+                  <div className="prodCell__fields">
+                    <input
+                      className="prodCell__name"
+                      value={p.name || ""}
+                      placeholder="Product name"
+                      maxLength={120}
+                      onChange={(e) => setProdField(ci, pi, "name", e.target.value)}
+                    />
+                    <input
+                      className="prodCell__model"
+                      value={p.model || ""}
+                      placeholder="Model no."
+                      maxLength={40}
+                      onChange={(e) => setProdField(ci, pi, "model", e.target.value)}
+                    />
+                    <textarea
+                      className="prodCell__desc"
+                      value={p.description || ""}
+                      placeholder="Short description (shown on the product page)"
+                      rows={2}
+                      maxLength={2000}
+                      onChange={(e) => setProdField(ci, pi, "description", e.target.value)}
+                    />
+                  </div>
                   <figcaption>
                     <button type="button" title="Move earlier" onClick={() => moveProduct(ci, pi, -1)} disabled={pi === 0}>←</button>
                     <button type="button" title="Move later" onClick={() => moveProduct(ci, pi, 1)} disabled={pi === cat.products.length - 1}>→</button>

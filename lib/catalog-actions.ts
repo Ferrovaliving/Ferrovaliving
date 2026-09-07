@@ -38,7 +38,9 @@ function sanitise(next: Catalog): Catalog {
       id: String(p.id || "").trim() || `item-${Math.random().toString(36).slice(2, 8)}`,
       image: String(p.image || ""),
       visible: p.visible !== false,
-      ...(p.name ? { name: String(p.name) } : {}),
+      ...(p.name ? { name: String(p.name).slice(0, 120) } : {}),
+      ...(p.model ? { model: String(p.model).slice(0, 40) } : {}),
+      ...(p.description ? { description: String(p.description).slice(0, 2000) } : {}),
     }));
     return {
       id,
@@ -60,10 +62,7 @@ export async function saveCatalog(next: Catalog): Promise<{ ok: true }> {
   const clean = sanitise(next);
   if (sbWritable) await sbSet("catalog", clean);
   else await writeFile(DATA, JSON.stringify(clean, null, 2) + "\n", "utf8");
-  revalidatePath("/");
-  revalidatePath("/collections");
-  revalidatePath("/products");
-  for (const c of clean.categories) revalidatePath(`/collections/${c.id}`);
+  revalidatePath("/", "layout");
   return { ok: true };
 }
 

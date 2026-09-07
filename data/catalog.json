@@ -6,46 +6,14 @@
       "hero": "/products/fl-103.webp",
       "visible": true,
       "products": [
-        {
-          "id": "fl-104",
-          "image": "/products/fl-104.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-101",
-          "image": "/products/fl-101.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-102",
-          "image": "/products/fl-102.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-105",
-          "image": "/products/fl-105.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-103",
-          "image": "/products/fl-103.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-107",
-          "image": "/products/fl-107.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-106",
-          "image": "/products/fl-106.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-108",
-          "image": "/products/fl-108.webp",
-          "visible": true
-        }
+        { "id": "fl-104", "image": "/products/fl-104.webp", "visible": true, "name": "Pichola Sofa", "model": "FL-SF-01", "description": "A low, deep three-seater on a powder-coated frame with weather-grade cushions, built for long evenings outdoors." },
+        { "id": "fl-101", "image": "/products/fl-101.webp", "visible": true, "name": "Aravalli Sofa", "model": "FL-SF-02", "description": "Clean-lined modular seating with hand-woven rope detailing and quick-dry foam cushions." },
+        { "id": "fl-102", "image": "/products/fl-102.webp", "visible": true, "name": "Mewar Sofa", "model": "FL-SF-03", "description": "A sculpted two-seater with a curved back and tapered metal legs, finished for full sun and monsoon." },
+        { "id": "fl-105", "image": "/products/fl-105.webp", "visible": true, "name": "Sarova Sofa", "model": "FL-SF-04", "description": "Generous corner seating in powder-coated aluminium and performance fabric, made to configure around any terrace." },
+        { "id": "fl-103", "image": "/products/fl-103.webp", "visible": true, "name": "Udai Sofa", "model": "FL-SF-05", "description": "A relaxed lounge sofa with a rope-wrapped frame and plump, water-resistant cushions." },
+        { "id": "fl-107", "image": "/products/fl-107.webp", "visible": true, "name": "Amber Sofa", "model": "FL-SF-06", "description": "Architectural outdoor seating with a slatted base and deep, supportive cushions in outdoor fabric." },
+        { "id": "fl-106", "image": "/products/fl-106.webp", "visible": true, "name": "Marwar Sofa", "model": "FL-SF-07", "description": "A compact loveseat with woven sides and a teak-toned finish, sized for smaller courtyards and decks." },
+        { "id": "fl-108", "image": "/products/fl-108.webp", "visible": true, "name": "Nimaj Sofa", "model": "FL-SF-08", "description": "A wide, low-slung sofa with rounded arms and marine-grade upholstery for poolside and garden settings." }
       ]
     },
     {
@@ -54,51 +22,15 @@
       "hero": "/products/fl-204.webp",
       "visible": true,
       "products": [
-        {
-          "id": "fl-203",
-          "image": "/products/fl-203.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-204",
-          "image": "/products/fl-204.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-205",
-          "image": "/products/fl-205.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-201",
-          "image": "/products/fl-201.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-206",
-          "image": "/products/fl-206.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-202",
-          "image": "/products/fl-202.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-207",
-          "image": "/products/fl-207.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-208",
-          "image": "/products/fl-208.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-209",
-          "image": "/products/fl-209.webp",
-          "visible": true
-        }
+        { "id": "fl-203", "image": "/products/fl-203.webp", "visible": true, "name": "Lagoon Daybed", "model": "FL-DB-01", "description": "A full daybed with a canopy-ready frame and reversible cushions, built for shaded afternoons by the water." },
+        { "id": "fl-204", "image": "/products/fl-204.webp", "visible": true, "name": "Solstice Daybed", "model": "FL-DB-02", "description": "An adjustable-back lounger in powder-coated steel and hand-woven rope, with a quick-dry mattress." },
+        { "id": "fl-205", "image": "/products/fl-205.webp", "visible": true, "name": "Meridian Daybed", "model": "FL-DB-03", "description": "A double daybed with side tables and a deep cushion base, finished to hold its line through every season." },
+        { "id": "fl-201", "image": "/products/fl-201.webp", "visible": true, "name": "Cove Daybed", "model": "FL-DB-04", "description": "A curved rope daybed that cocoons two, with weatherproof cushions and a rust-resistant frame." },
+        { "id": "fl-206", "image": "/products/fl-206.webp", "visible": true, "name": "Horizon Daybed", "model": "FL-DB-05", "description": "A slim single lounger with a rope deck and a low profile, easy to line up along a pool edge." },
+        { "id": "fl-202", "image": "/products/fl-202.webp", "visible": true, "name": "Dune Daybed", "model": "FL-DB-06", "description": "A rounded daybed with a raised back and bolster cushions, wrapped in UV-stable rope." },
+        { "id": "fl-207", "image": "/products/fl-207.webp", "visible": true, "name": "Palm Daybed", "model": "FL-DB-07", "description": "A classic sunbed with a slatted metal frame, castor wheels and a fitted outdoor cushion." },
+        { "id": "fl-208", "image": "/products/fl-208.webp", "visible": true, "name": "Serai Daybed", "model": "FL-DB-08", "description": "A wide platform daybed with loose cushions and a canopy frame, made for terraces and rooftop lounges." },
+        { "id": "fl-209", "image": "/products/fl-209.webp", "visible": true, "name": "Monsoon Daybed", "model": "FL-DB-09", "description": "A deep, sheltered daybed with high sides and fast-drying cushions for open, exposed spaces." }
       ]
     },
     {
@@ -107,46 +39,14 @@
       "hero": "/products/fl-305.webp",
       "visible": true,
       "products": [
-        {
-          "id": "fl-305",
-          "image": "/products/fl-305.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-303",
-          "image": "/products/fl-303.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-301",
-          "image": "/products/fl-301.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-308",
-          "image": "/products/fl-308.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-306",
-          "image": "/products/fl-306.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-302",
-          "image": "/products/fl-302.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-304",
-          "image": "/products/fl-304.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-307",
-          "image": "/products/fl-307.webp",
-          "visible": true
-        }
+        { "id": "fl-305", "image": "/products/fl-305.webp", "visible": true, "name": "Riva Bar Stool", "model": "FL-BS-01", "description": "A counter-height stool with a woven seat, footrest and a powder-coated frame rated for outdoor use." },
+        { "id": "fl-303", "image": "/products/fl-303.webp", "visible": true, "name": "Alto Bar Stool", "model": "FL-BS-02", "description": "A backless rope stool that tucks neatly under a bar, light enough to move and built to weather." },
+        { "id": "fl-301", "image": "/products/fl-301.webp", "visible": true, "name": "Verve Bar Stool", "model": "FL-BS-03", "description": "A curved-back bar chair in aluminium and performance cord, comfortable for long sittings." },
+        { "id": "fl-308", "image": "/products/fl-308.webp", "visible": true, "name": "Nomad Bar Stool", "model": "FL-BS-04", "description": "A stackable outdoor stool with a slatted seat and a matte, corrosion-resistant finish." },
+        { "id": "fl-306", "image": "/products/fl-306.webp", "visible": true, "name": "Highline Bar Stool", "model": "FL-BS-05", "description": "A tall stool with a wrap-around back and a rope seat, sized for standing-height counters." },
+        { "id": "fl-302", "image": "/products/fl-302.webp", "visible": true, "name": "Ember Bar Stool", "model": "FL-BS-06", "description": "A compact bar stool with a teak-toned seat and a fine metal frame for balconies and bar carts." },
+        { "id": "fl-304", "image": "/products/fl-304.webp", "visible": true, "name": "Tonic Bar Stool", "model": "FL-BS-07", "description": "A rounded rope stool with a low back and a broad footrest, finished for sun and rain." },
+        { "id": "fl-307", "image": "/products/fl-307.webp", "visible": true, "name": "Copper Bar Stool", "model": "FL-BS-08", "description": "A warm-toned metal stool with a woven top, made to pair with outdoor bars and high tables." }
       ]
     },
     {
@@ -155,31 +55,11 @@
       "hero": "/products/fl-405.webp",
       "visible": true,
       "products": [
-        {
-          "id": "fl-405",
-          "image": "/products/fl-405.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-401",
-          "image": "/products/fl-401.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-403",
-          "image": "/products/fl-403.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-402",
-          "image": "/products/fl-402.webp",
-          "visible": true
-        },
-        {
-          "id": "fl-404",
-          "image": "/products/fl-404.webp",
-          "visible": true
-        }
+        { "id": "fl-405", "image": "/products/fl-405.webp", "visible": true, "name": "Juliet Balcony Set", "model": "FL-BC-01", "description": "A two-chair and bistro-table set in powder-coated steel, scaled for a Juliet balcony or a narrow ledge." },
+        { "id": "fl-401", "image": "/products/fl-401.webp", "visible": true, "name": "Bistro Balcony Set", "model": "FL-BC-02", "description": "A folding table with two woven chairs, finished for the outdoors and easy to store between seasons." },
+        { "id": "fl-403", "image": "/products/fl-403.webp", "visible": true, "name": "Nook Balcony Set", "model": "FL-BC-03", "description": "A compact corner set with a bench, cushions and a low table, made to fit a small balcony end to end." },
+        { "id": "fl-402", "image": "/products/fl-402.webp", "visible": true, "name": "Terrace Balcony Set", "model": "FL-BC-04", "description": "A four-piece lounge set — two chairs, a loveseat and a table — in rope and weather-grade fabric." },
+        { "id": "fl-404", "image": "/products/fl-404.webp", "visible": true, "name": "Petit Balcony Set", "model": "FL-BC-05", "description": "A single armchair and side table in a slim metal frame, right-sized for a one-person balcony." }
       ]
     },
     {
@@ -188,11 +68,7 @@
       "hero": "/uploads/6babbcce4de43c933860e2169daf3eeb-mtip729w.webp",
       "visible": false,
       "products": [
-        {
-          "id": "6babbcce4de43c933860e2169daf3eeb-mtip729w",
-          "image": "/uploads/6babbcce4de43c933860e2169daf3eeb-mtip729w.webp",
-          "visible": true
-        }
+        { "id": "6babbcce4de43c933860e2169daf3eeb-mtip729w", "image": "/uploads/6babbcce4de43c933860e2169daf3eeb-mtip729w.webp", "visible": true, "name": "Riviera Pool Lounger", "model": "FL-PL-01", "description": "A sculpted sun lounger with a rope deck, adjustable back and a quick-dry cushion, built for poolside." }
       ]
     }
   ]
