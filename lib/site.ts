@@ -1,6 +1,14 @@
 import { publicContent } from "./content";
 
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://ferrovaliving.com").replace(/\/$/, "");
+const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "";
+
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  vercelUrl ||
+  "https://ferrovaliving.com"
+).replace(/\/$/, "");
 
 /** LocalBusiness / FurnitureStore structured data for the whole site. */
 export async function businessJsonLd() {
