@@ -2,7 +2,6 @@
 
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
-import sharp from "sharp";
 import { revalidatePath } from "next/cache";
 import type { Content, NavLink, IconItem, FaqItem, SiteContent } from "./content";
 import { withSiteDefaults } from "./content";
@@ -174,6 +173,7 @@ export async function uploadContentImage(form: FormData): Promise<{ path: string
   if (!/^image\/(jpeg|png|webp|avif)$/.test(file.type)) throw new Error("Use a JPG, PNG, WebP or AVIF image.");
   if (file.size > 25 * 1024 * 1024) throw new Error("Image must be 25 MB or smaller.");
 
+  const { default: sharp } = await import("sharp");
   const buf = Buffer.from(await file.arrayBuffer());
   await mkdir(UPLOADS, { recursive: true });
   const base = (file.name.replace(/\.[^.]+$/, "").replace(/[^a-z0-9]+/gi, "-").toLowerCase() || "image").slice(0, 40);
