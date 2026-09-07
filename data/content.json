@@ -1,0 +1,273 @@
+{
+  "about": {
+    "eyebrow": "About Ferrova Living",
+    "headingLine1": "Crafted for",
+    "headingLine2": "modern living.",
+    "intro": "Experience artful, luxurious outdoor furniture at Ferrova Living and discover the true essence of exquisite design.",
+    "body": [
+      "Ferrova Living is a premium outdoor furniture manufacturer that takes pride in crafting exquisite pieces that elevate the spaces they inhabit. We believe furniture should be a statement of individuality and personal style, made with weather-grade materials for hotels, resorts, villas and residences.",
+      "From the choice of finest materials to unique design elements, we work closely with our clients to create pieces that transform their space and endure every season, delivered across the country."
+    ],
+    "pageTitle": "Made in Udaipur. Made for the world.",
+    "pageEyebrow": "Our Story",
+    "pageBody": [
+      "Ferrova Living creates premium outdoor furniture at the meeting point of contemporary design and enduring Indian craftsmanship.",
+      "Every piece is hand-finished at our Udaipur workshop, built with powder-coated metal, teak and hand-woven rope to hold its line through sun, rain and humidity."
+    ]
+  },
+  "testimonials": [
+    {
+      "id": "t1",
+      "quote": "Beautiful build quality and the team was incredibly helpful throughout. Would recommend for anyone wanting elegant, weatherproof design.",
+      "name": "Nidhi Rajawat",
+      "role": "a month ago",
+      "visible": true
+    },
+    {
+      "id": "t2",
+      "quote": "Great range and quality at fair pricing. Exactly what our resort courtyard needed.",
+      "name": "Aditya Singh Rajawat",
+      "role": "a month ago",
+      "visible": true
+    },
+    {
+      "id": "t3",
+      "quote": "Wonderful experience — such a great variety of luxury outdoor pieces to choose from.",
+      "name": "Manvendra Singh",
+      "role": "a month ago",
+      "visible": true
+    },
+    {
+      "id": "t4",
+      "quote": "Just go through their portfolio and see the work for yourself. Impressive craftsmanship.",
+      "name": "Priyanda Kh",
+      "role": "a month ago",
+      "visible": true
+    }
+  ],
+  "projects": [
+    {
+      "id": "p1",
+      "title": "Aravalli Pool House",
+      "location": "Udaipur",
+      "kind": "Poolside",
+      "summary": "Rope daybeds and loungers for a hillside pool deck overlooking the Aravalli range.",
+      "image": "/products/fl-203.webp",
+      "visible": true
+    },
+    {
+      "id": "p2",
+      "title": "Lakeview Rooftop Lounge",
+      "location": "Udaipur",
+      "kind": "Boutique Hotel",
+      "summary": "Curved outdoor sofas and low tables for a rooftop bar with a view of Lake Pichola.",
+      "image": "/products/fl-104.webp",
+      "visible": true
+    },
+    {
+      "id": "p3",
+      "title": "Courtyard Bar",
+      "location": "Jaipur",
+      "kind": "Restaurant",
+      "summary": "Woven bar stools and counter seating for an open-air courtyard bar.",
+      "image": "/products/fl-305.webp",
+      "visible": true
+    }
+  ],
+  "site": {
+    "nav": {
+      "links": [
+        {
+          "label": "Collections",
+          "href": "/collections"
+        },
+        {
+          "label": "Projects",
+          "href": "/projects"
+        },
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "FAQ",
+          "href": "/#faq"
+        }
+      ],
+      "ctaLabel": "Enquire now ↗",
+      "ctaHref": "/#contact"
+    },
+    "hero": {
+      "eyebrow": "OUTDOOR LIVING · MADE IN UDAIPUR",
+      "headline": "Furniture That Turns Open Spaces\nInto",
+      "accent": "Experiences",
+      "intro": "Premium outdoor furniture designed to bring comfort, character, and style to every space.",
+      "ctaLabel": "Explore the collection",
+      "ctaHref": "#products",
+      "scrollText": "SCROLL TO DISCOVER",
+      "image": ""
+    },
+    "features": [
+      {
+        "icon": "frame",
+        "label": "Powder-Coated Metal"
+      },
+      {
+        "icon": "fabric",
+        "label": "Weather-Resistant Fabric"
+      },
+      {
+        "icon": "weave",
+        "label": "Hand-Woven Rope"
+      },
+      {
+        "icon": "finish",
+        "label": "Outdoor-Grade Finish"
+      }
+    ],
+    "collectionSection": {
+      "eyebrow": "THE COLLECTION",
+      "heading": "Explore by Category",
+      "ctaLabel": "View all collections"
+    },
+    "why": {
+      "eyebrow": "WHY CHOOSE US?",
+      "heading": "Why Choose Us?",
+      "intro": "By choosing us as your premium furniture manufacturer, you can expect superior quality, customization options, efficient delivery and installation, and a commitment to ensuring your satisfaction.",
+      "items": [
+        {
+          "icon": "medal",
+          "label": "Quality Craftsmanship"
+        },
+        {
+          "icon": "ruler",
+          "label": "Customization Options"
+        },
+        {
+          "icon": "truck",
+          "label": "On Time Delivery"
+        },
+        {
+          "icon": "people",
+          "label": "Commitment to Customer Satisfaction"
+        }
+      ]
+    },
+    "testimonialSection": {
+      "eyebrow": "TESTIMONIALS",
+      "heading": "Real Person, Real Review"
+    },
+    "projectSection": {
+      "eyebrow": "SELECTED WORK",
+      "heading": "Projects",
+      "ctaLabel": "View all projects"
+    },
+    "faq": {
+      "eyebrow": "GOT QUESTIONS?",
+      "heading": "FAQ (Frequently Asked Questions)",
+      "items": [
+        {
+          "q": "What materials do you use in your furniture?",
+          "a": "We work with powder-coated metal, teak, hand-woven synthetic rope and performance outdoor fabrics chosen for durability and weather resistance."
+        },
+        {
+          "q": "Can I customize dimensions to fit my space?",
+          "a": "Yes — every collection can be tailored in size, finish and upholstery to suit your project."
+        },
+        {
+          "q": "How long does it take to deliver made-to-order furniture?",
+          "a": "Standard pieces ship in 3-4 weeks; fully custom orders typically take 6-8 weeks depending on scope."
+        },
+        {
+          "q": "Do you have weather-resistant outdoor furniture available?",
+          "a": "All Ferrova collections are engineered for outdoor use, built to withstand sun, rain and humidity."
+        },
+        {
+          "q": "What distinguishes Ferrova Living from other manufacturers?",
+          "a": "Every piece is hand-finished at our Udaipur workshop with a focus on longevity, considered design and made-to-measure comfort."
+        }
+      ]
+    },
+    "enquiry": {
+      "eyebrow": "CONTACT US",
+      "heading": "Let’s Create Your",
+      "accent": "Perfect Space.",
+      "budgets": [
+        "Under ₹1 Lakh",
+        "₹1 – 5 Lakh",
+        "₹5 – 15 Lakh",
+        "Above ₹15 Lakh"
+      ],
+      "success": "Thank you — our team will reach out shortly."
+    },
+    "footer": {
+      "links": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "About Us",
+          "href": "/about"
+        },
+        {
+          "label": "Collections",
+          "href": "/collections"
+        },
+        {
+          "label": "Projects",
+          "href": "/projects"
+        },
+        {
+          "label": "Contact",
+          "href": "/#contact"
+        }
+      ],
+      "copyright": "© 2026 Ferrova Living. All rights reserved."
+    },
+    "collectionsPage": {
+      "heading": "Collections",
+      "intro": "Considered silhouettes and enduring materials, made to measure for outdoor living. Choose a collection to see the pieces."
+    },
+    "collectionDetail": {
+      "intro": "Every piece can be tailored in size, finish and upholstery. Enquire for specifications, finishes and lead times."
+    },
+    "projectsPage": {
+      "heading": "Projects",
+      "intro": "A selection of hotels, resorts, villas and restaurants furnished by Ferrova Living.",
+      "empty": "Project stories are on the way. Add them in Admin → Projects."
+    },
+    "productsPage": {
+      "intro": "Considered silhouettes and enduring materials, made to measure for outdoor living. Every piece can be customized in size, finish and upholstery."
+    },
+    "contact": {
+      "company": "Ferrova Living",
+      "tagline": "Crafted for Modern Living.",
+      "phoneDisplay": "+91 90248 07898",
+      "phoneDigits": "919024807898",
+      "whatsappDigits": "919024807898",
+      "whatsappMessage": "Hi Ferrova Living, I'd like your latest catalogue and details on custom outdoor furniture.",
+      "email": "ferrovaliving@gmail.com",
+      "instagramHandle": "@ferrovaliving",
+      "instagramUrl": "https://instagram.com/ferrovaliving",
+      "hours": "Mon–Sun · 9 AM – 9 PM IST",
+      "addressLine1": "Udaipur, Rajasthan",
+      "addressLine2": "India · 313001"
+    },
+    "seo": {
+      "siteName": "Ferrova Living",
+      "tagline": "Crafted for Modern Living",
+      "description": "Ferrova Living designs and manufactures premium outdoor furniture in Udaipur — powder-coated metal, teak and hand-woven rope pieces for hotels, resorts, villas and considered homes.",
+      "keywords": [
+        "outdoor furniture manufacturer",
+        "luxury outdoor furniture India",
+        "bespoke outdoor furniture Udaipur",
+        "hotel and resort furniture",
+        "weatherproof furniture",
+        "rope furniture",
+        "poolside furniture",
+        "custom outdoor furniture"
+      ]
+    }
+  }
+}
