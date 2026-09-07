@@ -1,6 +1,7 @@
 "use client";
 
-const url=process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/,"")||"";
+// Accept the project URL with or without a trailing slash or a /rest|/auth|/storage/v1 suffix.
+const url=(process.env.NEXT_PUBLIC_SUPABASE_URL||"").trim().replace(/\/+$/,"").replace(/\/(rest|auth|storage)\/v1$/,"");
 const key=process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY||"";
 export const configured=Boolean(url&&key&&!url.includes("your-project"));
 const TOKEN="ferrova_admin_session";
