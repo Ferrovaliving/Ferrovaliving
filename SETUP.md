@@ -64,21 +64,30 @@ To send alerts to a different address (e.g. `ferrovaliving@gmail.com`) or from
 your own domain, verify a domain in Resend → **Domains**, then also set
 `LEAD_NOTIFY_FROM` = `Ferrova Living <hello@yourdomain.com>`.
 
-### WhatsApp alert too (optional, ~2 min)
+### WhatsApp alert too (optional, ~10 min)
 
-Simplest option is CallMeBot (free, unofficial — fine for pinging yourself):
+Recommended: **Green API** (green-api.com — free tier, reliable).
 
-1. On the phone you want alerts on, add **+34 644 51 95 23** to your contacts.
-2. WhatsApp it exactly: **`I allow callmebot to send me messages`**
-3. It replies with your personal **API key**.
-4. In Vercel env vars add:
+1. Sign up at [green-api.com](https://green-api.com) → **Create an instance** (pick
+   the free "Developer" plan).
+2. Open the instance. You'll see **idInstance** and **apiTokenInstance** — copy both.
+3. Still in the instance, find the **QR** tab. On the phone that will receive
+   alerts, open WhatsApp → **Settings → Linked devices → Link a device** → scan
+   the QR. The instance state should go to **authorized**.
+4. In Vercel env vars (all environments) add:
    - `WHATSAPP_TO` = your number, country code first, digits only (e.g. `919024807898`)
-   - `WHATSAPP_CALLMEBOT_APIKEY` = the key it sent you
-5. Redeploy.
+   - `GREENAPI_ID_INSTANCE` = the idInstance
+   - `GREENAPI_API_TOKEN` = the apiTokenInstance
+   - *(if the console shows a host other than `api.green-api.com`, also set
+     `GREENAPI_API_URL` to it)*
+5. Redeploy, then submit a test enquiry.
 
-For something more robust, use Twilio instead: set `TWILIO_ACCOUNT_SID`,
-`TWILIO_AUTH_TOKEN`, `TWILIO_WHATSAPP_FROM` (and `WHATSAPP_TO`). Twilio needs an
-approved WhatsApp sender.
+Note: Green API links your own WhatsApp (like WhatsApp Web) — keep that phone
+online. It's unofficial; low volume like lead alerts is fine.
+
+Alternatives: **CallMeBot** (`WHATSAPP_CALLMEBOT_APIKEY` — free but its bot is
+often down) or **Twilio** (`TWILIO_ACCOUNT_SID` / `TWILIO_AUTH_TOKEN` /
+`TWILIO_WHATSAPP_FROM` — needs an approved sender).
 
 Both alerts are best-effort and run in parallel: if Resend or WhatsApp fails,
 the enquiry is still saved to the database and the other alert still goes out.

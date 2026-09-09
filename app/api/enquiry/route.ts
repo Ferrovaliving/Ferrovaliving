@@ -16,11 +16,18 @@ const RESEND_KEY = process.env.RESEND_API_KEY || "";
 const NOTIFY_TO = process.env.LEAD_NOTIFY_EMAIL || "";
 const NOTIFY_FROM = process.env.LEAD_NOTIFY_FROM || "Ferrova Living <onboarding@resend.dev>";
 
-// WhatsApp via CallMeBot (https://www.callmebot.com/blog/free-api-whatsapp-messages/)
-const WA_PHONE = (process.env.WHATSAPP_TO || "").replace(/[^\d+]/g, "");
+// WhatsApp recipient (international format, digits only e.g. 919024807898)
+const WA_PHONE = (process.env.WHATSAPP_TO || "").replace(/[^\d]/g, "");
+
+// Green API (green-api.com) — free tier, links your own WhatsApp
+const GA_URL = (process.env.GREENAPI_API_URL || "https://api.green-api.com").replace(/\/+$/, "");
+const GA_ID = process.env.GREENAPI_ID_INSTANCE || "";
+const GA_TOKEN = process.env.GREENAPI_API_TOKEN || "";
+
+// CallMeBot (https://www.callmebot.com/blog/free-api-whatsapp-messages/)
 const WA_APIKEY = process.env.WHATSAPP_CALLMEBOT_APIKEY || "";
 
-// Twilio WhatsApp (optional, more robust — needs an approved sender/template)
+// Twilio WhatsApp (needs an approved sender/template)
 const TW_SID = process.env.TWILIO_ACCOUNT_SID || "";
 const TW_TOKEN = process.env.TWILIO_AUTH_TOKEN || "";
 const TW_FROM = process.env.TWILIO_WHATSAPP_FROM || ""; // e.g. "whatsapp:+14155238886"
@@ -74,6 +81,20 @@ async function sendWhatsApp(lead: Lead) {
     `Phone: ${lead.phone || "—"}\n` +
     `Type: ${lead.kind}\n\n` +
     `${lead.message || "(no message)"}`;
+
+  if (WA_PHONE && GA_ID && GA_TOKEN) {
+    const res = await fetch(`${GA_URL}/waInstance${GA_ID}/sendMessage/${GA_TOKEN}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chatId: `${WA_PHONE}@c.us`, message: text }),
+      signal: AbortSignal.timeout(12000),
+    });
+    const out = await res.text().catch(() => "");
+    if (!res.ok || !/idMessage/.test(out)) {
+      throw new Error(`green-api ${res.status}: ${out.slice(0, 200)}`);
+    }
+    return;
+  }
 
   if (WA_PHONE && WA_APIKEY) {
     const url =
