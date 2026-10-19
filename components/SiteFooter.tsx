@@ -45,7 +45,7 @@ export async function SiteFooter() {
           </a>
         </div>
       </div>
-      <p className="copyright">{site.footer.copyright}</p>
+      <p className="copyright">{site.footer.copyright} · <Link href="/privacy">Privacy Policy</Link></p>
     </footer>
   );
 }
