@@ -274,6 +274,14 @@ export function SiteEditor({ initial }: { initial: Content }) {
         <h2>Collections page</h2>
         <label>Banner heading<input value={site.collectionsPage.heading} onChange={(e) => patch((d) => { d.collectionsPage.heading = e.target.value; })} /></label>
         <label>Intro paragraph<textarea rows={2} value={site.collectionsPage.intro} onChange={(e) => patch((d) => { d.collectionsPage.intro = e.target.value; })} /></label>
+        <label>Material filter options (one per line)
+          <textarea
+            rows={4}
+            value={site.collectionsPage.materials.join("\n")}
+            onChange={(e) => patch((d) => { d.collectionsPage.materials = e.target.value.split("\n").map((s) => s.trim()).filter(Boolean); })}
+          />
+        </label>
+        <p className="catalogIntro">These appear as filter tiles at the top of each collection page. Tag each product with its materials in <a href="/admin/catalog">Catalog &amp; Categories</a>.</p>
         <label>Collection detail intro paragraph<textarea rows={2} value={site.collectionDetail.intro} onChange={(e) => patch((d) => { d.collectionDetail.intro = e.target.value; })} /></label>
 
         <h2>Projects page</h2>

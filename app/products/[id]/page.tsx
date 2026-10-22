@@ -65,6 +65,13 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
             <p className="eyebrow gold">{category.name}</p>
             <h1>{name}</h1>
             {product.model && <p className="productDetail__model">Model {product.model}</p>}
+            {product.materials && product.materials.length > 0 && (
+              <p className="productDetail__mats">
+                {product.materials.map((m) => (
+                  <span key={m}>{m}</span>
+                ))}
+              </p>
+            )}
             {product.description && <p className="productDetail__desc">{product.description}</p>}
 
             <ul className="productDetail__specs">

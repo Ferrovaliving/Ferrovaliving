@@ -74,7 +74,7 @@ export type SiteContent = {
   faq: { eyebrow: string; heading: string; items: FaqItem[] };
   enquiry: { eyebrow: string; heading: string; accent: string; budgets: string[]; success: string };
   footer: { links: NavLink[]; copyright: string };
-  collectionsPage: { heading: string; intro: string };
+  collectionsPage: { heading: string; intro: string; materials: string[] };
   collectionDetail: { intro: string };
   projectsPage: { heading: string; intro: string; empty: string };
   productsPage: { intro: string };
@@ -181,6 +181,7 @@ export const DEFAULT_SITE: SiteContent = {
     copyright: "© 2026 Ferrova Living. All rights reserved.",
   },
   collectionsPage: {
+    materials: ["Solid Wood", "Fabric", "Metal", "Rope & Wicker"],
     heading: "Collections",
     intro:
       "Considered silhouettes and enduring materials, made to measure for outdoor living. Choose a collection to see the pieces.",
@@ -248,7 +249,11 @@ export function withSiteDefaults(raw: Partial<SiteContent> | undefined): SiteCon
     faq: { ...d.faq, ...s.faq, items: arr(s.faq?.items, d.faq.items) },
     enquiry: { ...d.enquiry, ...s.enquiry, budgets: arr(s.enquiry?.budgets, d.enquiry.budgets) },
     footer: { ...d.footer, ...s.footer, links: arr(s.footer?.links, d.footer.links) },
-    collectionsPage: { ...d.collectionsPage, ...s.collectionsPage },
+    collectionsPage: {
+      ...d.collectionsPage,
+      ...s.collectionsPage,
+      materials: arr(s.collectionsPage?.materials, d.collectionsPage.materials),
+    },
     collectionDetail: { ...d.collectionDetail, ...s.collectionDetail },
     projectsPage: { ...d.projectsPage, ...s.projectsPage },
     productsPage: { ...d.productsPage, ...s.productsPage },

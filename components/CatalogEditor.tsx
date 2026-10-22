@@ -35,7 +35,13 @@ const STANDARD_CATEGORIES: { id: string; name: string; group: "type" | "material
   { id: "rope-wicker", name: "Rope & Wicker Furniture", group: "material" },
 ];
 
-export function CatalogEditor({ initial }: { initial: Catalog }) {
+export function CatalogEditor({
+  initial,
+  materialOptions = [],
+}: {
+  initial: Catalog;
+  materialOptions?: string[];
+}) {
   const router = useRouter();
   const [cats, setCats] = useState<CatalogCategory[]>(() => clone(initial));
   const [dirty, setDirty] = useState(false);
@@ -116,6 +122,22 @@ export function CatalogEditor({ initial }: { initial: Catalog }) {
   const deleteProduct = (ci: number, pi: number) =>
     mutate((d) =>
       d.map((c, i) => (i === ci ? { ...c, products: c.products.filter((_, j) => j !== pi) } : c)),
+    );
+  const toggleMaterial = (ci: number, pi: number, material: string) =>
+    mutate((d) =>
+      d.map((c, i) =>
+        i === ci
+          ? {
+              ...c,
+              products: c.products.map((p, j) => {
+                if (j !== pi) return p;
+                const cur = p.materials || [];
+                const next = cur.includes(material) ? cur.filter((m) => m !== material) : [...cur, material];
+                return { ...p, materials: next };
+              }),
+            }
+          : c,
+      ),
     );
   const setProdField = (ci: number, pi: number, key: "name" | "model" | "description", value: string) =>
     mutate((d) =>
@@ -270,6 +292,23 @@ export function CatalogEditor({ initial }: { initial: Catalog }) {
                       maxLength={2000}
                       onChange={(e) => setProdField(ci, pi, "description", e.target.value)}
                     />
+                    {(() => {
+                      const opts = [...materialOptions, ...(p.materials || []).filter((m) => !materialOptions.includes(m))];
+                      return opts.length > 0 ? (
+                        <div className="prodCell__mats" title="Materials (used by the filter on the collection page)">
+                          {opts.map((m) => (
+                            <label key={m} className={(p.materials || []).includes(m) ? "on" : ""}>
+                              <input
+                                type="checkbox"
+                                checked={(p.materials || []).includes(m)}
+                                onChange={() => toggleMaterial(ci, pi, m)}
+                              />
+                              {m}
+                            </label>
+                          ))}
+                        </div>
+                      ) : null;
+                    })()}
                   </div>
                   <figcaption>
                     <button type="button" title="Move earlier" onClick={() => moveProduct(ci, pi, -1)} disabled={pi === 0}>←</button>

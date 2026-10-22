@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "../../../components/SiteHeader";
 import { SiteFooter } from "../../../components/SiteFooter";
+import { CollectionGrid } from "../../../components/CollectionGrid";
 import { getPublicCategory, productLabel } from "../../../lib/catalog";
 import { publicContent } from "../../../lib/content";
 
@@ -55,19 +56,16 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             and made-to-order options.
           </p>
         )}
-        <div className="collectionGrid collectionGrid--named">
-          {cat.products.map((p, i) => (
-            <Link className="collectionItem" href={`/products/${p.id}`} key={p.id + i}>
-              <span className="collectionItem__img">
-                <img src={p.image} alt={productLabel(p, cat)} loading="lazy" />
-              </span>
-              <span className="collectionItem__cap">
-                <b>{productLabel(p, cat)}</b>
-                {p.model && <em>{p.model}</em>}
-              </span>
-            </Link>
-          ))}
-        </div>
+        <CollectionGrid
+          items={cat.products.map((p) => ({
+            id: p.id,
+            image: p.image,
+            name: productLabel(p, cat),
+            model: p.model,
+            materials: p.materials || [],
+          }))}
+          materialOrder={site.collectionsPage.materials}
+        />
         <div className="center">
           <Link className="darkButton" href="/#contact">Enquire about this collection <b>↗</b></Link>
         </div>

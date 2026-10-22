@@ -92,6 +92,7 @@ function sanitiseSite(raw: SiteContent): SiteContent {
     collectionsPage: {
       heading: str(s.collectionsPage.heading, 160),
       intro: str(s.collectionsPage.intro, 800),
+      materials: (s.collectionsPage.materials || []).map((m) => str(m, 40).trim()).filter(Boolean).slice(0, 12),
     },
     collectionDetail: { intro: str(s.collectionDetail.intro, 800) },
     projectsPage: {

@@ -41,6 +41,9 @@ function sanitise(next: Catalog): Catalog {
       ...(p.name ? { name: String(p.name).slice(0, 120) } : {}),
       ...(p.model ? { model: String(p.model).slice(0, 40) } : {}),
       ...(p.description ? { description: String(p.description).slice(0, 2000) } : {}),
+      ...(Array.isArray(p.materials) && p.materials.length
+        ? { materials: p.materials.map((m) => String(m).trim().slice(0, 40)).filter(Boolean).slice(0, 6) }
+        : {}),
     }));
     return {
       id,

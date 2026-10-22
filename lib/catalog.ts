@@ -9,6 +9,8 @@ export type CatalogProduct = {
   name?: string;
   model?: string;
   description?: string;
+  /** e.g. ["Solid Wood", "Fabric"] — drives the material filter on collection pages. */
+  materials?: string[];
 };
 /** "type" = what it is (sofas, beds…); "material" = what it's made of (solid wood, fabric…). */
 export type CategoryGroup = "type" | "material";

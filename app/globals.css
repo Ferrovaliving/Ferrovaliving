@@ -247,3 +247,17 @@ footer .contact a:hover,footer div a:hover{color:#fff}
 .catGroupSel{padding:6px 8px;border:1px solid #ddd0bb;border-radius:4px;background:#faf8f3;font-size:12px;color:#33291f}
 @media(max-width:1000px){.catTiles--compact{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:800px){.catTiles--compact{grid-template-columns:1fr 1fr;gap:12px}.catTiles--compact .catTile{height:200px}.catTiles--compact .catTileLabel{font-size:16px}}
+
+/* Collection page: material filter tiles */
+.matFilter{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 34px}
+.matFilter button{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid #d9ccb6;background:#fff;border-radius:999px;font:13px Arial,sans-serif;letter-spacing:.4px;color:var(--espresso);cursor:pointer;transition:.2s}
+.matFilter button span{font-size:11px;color:#9a8d7e}
+.matFilter button:hover{border-color:var(--gold)}
+.matFilter button.on{background:var(--espresso);border-color:var(--espresso);color:#fff}
+.matFilter button.on span{color:#d8c9ad}
+.productDetail__mats{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 20px}
+.productDetail__mats span{font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:5px 11px;border:1px solid #d9ccb6;border-radius:999px;color:#6b5b3e;background:#faf6ee}
+.prodCell__mats{display:flex;flex-wrap:wrap;gap:4px;padding-top:2px}
+.prodCell__mats label{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 7px;border:1px solid #e0d6c9;border-radius:999px;background:#faf8f3;cursor:pointer;color:#6b5b3e}
+.prodCell__mats label.on{background:#2b211d;border-color:#2b211d;color:#fff}
+.prodCell__mats input{width:auto;margin:0}
