@@ -47,6 +47,7 @@ function sanitise(next: Catalog): Catalog {
       name: String(c.name || "Untitled category").slice(0, 80),
       hero: String(c.hero || products[0]?.image || ""),
       visible: c.visible !== false,
+      group: c.group === "material" ? ("material" as const) : ("type" as const),
       products,
     };
   });

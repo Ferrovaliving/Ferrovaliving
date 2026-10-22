@@ -231,3 +231,19 @@ footer .contact a:hover,footer div a:hover{color:#fff}
 .legal section{max-width:820px;padding-top:8vh}.legal h1{font-size:clamp(40px,6vw,64px)}.legal article{font-size:19px}.legal small{display:block;font-size:12px;color:#8a8078;margin:-20px 0 30px}
 .legal h2{font:24px Georgia,serif;margin:38px 0 12px;color:var(--espresso)}.legal section>p:not(:first-child){font:16px/1.75 Arial,Helvetica,sans-serif;letter-spacing:normal;color:#4a433d;margin:0 0 14px}
 .legal ul{font:16px/1.7 Arial,Helvetica,sans-serif;color:#4a433d;padding-left:22px;margin:0 0 14px;display:grid;gap:8px}.legal a{color:var(--gold);text-decoration:underline}.legal code{font-size:13px;background:#ece4d6;padding:1px 5px;border-radius:3px}
+
+/* Front page: grouped, compact category tiles */
+.catGroups{display:flex;flex-direction:column;gap:64px;margin-top:50px;text-align:left}
+.catGroup__title{font:26px Georgia,serif;color:var(--espresso);margin:0 0 4px;padding-bottom:14px;border-bottom:1px solid #e2d6c0;font-weight:normal}
+.catGroup .catTiles{margin-top:28px}
+.catTiles--compact{grid-template-columns:repeat(4,1fr);gap:18px}
+.catTiles--compact .catTile{height:260px}
+.catTiles--compact .catTileLabel{font-size:20px;left:18px;right:18px;bottom:18px}
+.catTiles--compact .catTileCount{left:18px;top:16px}
+.catTile--empty{background:linear-gradient(145deg,#e9dfcd,#d8c9ad)}
+.catTilePlaceholder{position:absolute;inset:0;display:grid;place-items:center;color:#8f7a55}
+.catTilePlaceholder svg{width:64px;height:64px;opacity:.55}
+.catTile--empty .catTileLabel,.catTile--empty .catTileCount{color:var(--espresso)}
+.catGroupSel{padding:6px 8px;border:1px solid #ddd0bb;border-radius:4px;background:#faf8f3;font-size:12px;color:#33291f}
+@media(max-width:1000px){.catTiles--compact{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:800px){.catTiles--compact{grid-template-columns:1fr 1fr;gap:12px}.catTiles--compact .catTile{height:200px}.catTiles--compact .catTileLabel{font-size:16px}}

@@ -49,6 +49,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       <section className="section productsSection">
         <p className="catalogIntro">{site.collectionDetail.intro}</p>
+        {cat.products.length === 0 && (
+          <p className="catalogIntro">
+            Pieces for this collection are being photographed. Enquire and we&rsquo;ll share the latest designs
+            and made-to-order options.
+          </p>
+        )}
         <div className="collectionGrid collectionGrid--named">
           {cat.products.map((p, i) => (
             <Link className="collectionItem" href={`/products/${p.id}`} key={p.id + i}>

@@ -1,18 +1,19 @@
 import Link from "next/link";
 import { Icon } from "../components/Icon";
-import { CategoryTiles } from "../components/CategoryTiles";
+import { CategoryGroups } from "../components/CategoryTiles";
 import { EnquiryForm } from "../components/EnquiryForm";
 import { Faq } from "../components/Faq";
 import { InviteRedirect } from "../components/InviteRedirect";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
-import { publicCatalog } from "../lib/catalog";
+import { publicCatalog, splitByGroup } from "../lib/catalog";
 import { publicContent } from "../lib/content";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const { categories } = await publicCatalog();
+  const groups = splitByGroup(categories);
   const { about, testimonials, projects, site } = await publicContent();
   const { hero, features, collectionSection, why, testimonialSection, projectSection } = site;
 
@@ -86,7 +87,12 @@ export default async function Home() {
       <section id="products" className="section productsSection">
         <p className="eyebrow gold tc">{collectionSection.eyebrow}</p>
         <h2 className="tc">{collectionSection.heading}</h2>
-        <CategoryTiles categories={categories} />
+        <CategoryGroups
+          type={groups.type}
+          material={groups.material}
+          typeHeading={collectionSection.typeHeading}
+          materialHeading={collectionSection.materialHeading}
+        />
         <div className="center">
           <Link className="darkButton" href="/collections">
             {collectionSection.ctaLabel} <b>↗</b>

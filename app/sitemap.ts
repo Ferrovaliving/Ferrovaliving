@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let categories: MetadataRoute.Sitemap = [];
   try {
     const { categories: cats } = await publicCatalog();
-    categories = cats.map((c) => ({
+    categories = cats.filter((c) => c.products.length > 0).map((c) => ({
       url: `${siteUrl}/collections/${c.id}`,
       lastModified: now,
       changeFrequency: "monthly" as const,

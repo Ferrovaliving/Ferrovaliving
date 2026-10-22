@@ -18,5 +18,29 @@ export function Icon({name}:{name:string}){
   if(name==="loungers")return <svg {...p}><path d="M2 16h13l4-5H8z"/><path d="M2 16v4M19 11l3 1-1 4"/></svg>;
   if(name==="tables")return <svg {...p}><rect x="4" y="9" width="16" height="3" rx="1"/><path d="M6 12v8M18 12v8"/></svg>;
   if(name==="custom")return <svg {...p}><path d="M14 3l7 7-9 9-7 1 1-7z"/></svg>;
+  if(name==="bed")return <svg {...p}><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 00-3-3h-7v5"/><circle cx="7" cy="11" r="1.6"/></svg>;
+  if(name==="chair")return <svg {...p}><path d="M7 3h10v9H7zM5 12h14v3H5zM7 15v6M17 15v6"/></svg>;
+  if(name==="wood")return <svg {...p}><path d="M12 21V11M12 11c-4 0-6-3-6-7 4 0 6 3 6 7zM12 14c3 0 5-2 5-5-3 0-5 2-5 5z"/></svg>;
   return null;
+}
+
+/** Pick the best icon for a category from its id/name (falls back to a generic mark). */
+export function iconForCategory(id: string, name = ""): string {
+  const t = `${id} ${name}`.toLowerCase();
+  const rules: [RegExp, string][] = [
+    [/sofa|couch|sectional/, "sofas"],
+    [/daybed|lounger|sunbed/, "daybeds"],
+    [/stool/, "bar-stools"],
+    [/balcony/, "balcony-sets"],
+    [/(^|[^a-z])beds?([^a-z]|$)/, "bed"],
+    [/dining.*table|restaurant.*table/, "dining"],
+    [/table/, "tables"],
+    [/chair|seat/, "chair"],
+    [/wood|teak/, "wood"],
+    [/fabric|leather|upholster|cushion/, "fabric"],
+    [/rope|wicker|rattan|weave|cane/, "weave"],
+    [/metal|steel|aluminium|aluminum|iron/, "frame"],
+  ];
+  for (const [re, icon] of rules) if (re.test(t)) return icon;
+  return "custom";
 }

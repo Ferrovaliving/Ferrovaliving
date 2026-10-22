@@ -56,6 +56,8 @@ function sanitiseSite(raw: SiteContent): SiteContent {
       eyebrow: str(s.collectionSection.eyebrow, 120),
       heading: str(s.collectionSection.heading, 160),
       ctaLabel: str(s.collectionSection.ctaLabel, 80),
+      typeHeading: str(s.collectionSection.typeHeading, 120),
+      materialHeading: str(s.collectionSection.materialHeading, 120),
     },
     why: {
       eyebrow: str(s.why.eyebrow, 120),

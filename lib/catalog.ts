@@ -10,11 +10,14 @@ export type CatalogProduct = {
   model?: string;
   description?: string;
 };
+/** "type" = what it is (sofas, beds…); "material" = what it's made of (solid wood, fabric…). */
+export type CategoryGroup = "type" | "material";
 export type CatalogCategory = {
   id: string;
   name: string;
   hero: string;
   visible: boolean;
+  group?: CategoryGroup;
   products: CatalogProduct[];
 };
 export type Catalog = { categories: CatalogCategory[] };
@@ -44,14 +47,28 @@ export async function readCatalog(): Promise<Catalog> {
   }
 }
 
-/** Only visible categories and visible products — for the public site. */
+/**
+ * Visible categories and their visible products — for the public site.
+ * A visible category with no products yet is kept, so it still shows on the
+ * front page (as a "coming soon" tile) until pieces are added.
+ */
 export async function publicCatalog(): Promise<Catalog> {
   const data = await readCatalog();
   return {
     categories: data.categories
       .filter((c) => c.visible)
-      .map((c) => ({ ...c, products: c.products.filter((p) => p.visible) }))
-      .filter((c) => c.products.length > 0),
+      .map((c) => ({ ...c, products: c.products.filter((p) => p.visible) })),
+  };
+}
+
+/** Split categories into furniture-type and material groups, keeping order. */
+export function splitByGroup(categories: CatalogCategory[]): {
+  type: CatalogCategory[];
+  material: CatalogCategory[];
+} {
+  return {
+    type: categories.filter((c) => c.group !== "material"),
+    material: categories.filter((c) => c.group === "material"),
   };
 }
 

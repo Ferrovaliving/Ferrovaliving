@@ -61,7 +61,13 @@ export type SiteContent = {
     image: string;
   };
   features: IconItem[];
-  collectionSection: { eyebrow: string; heading: string; ctaLabel: string };
+  collectionSection: {
+    eyebrow: string;
+    heading: string;
+    ctaLabel: string;
+    typeHeading: string;
+    materialHeading: string;
+  };
   why: { eyebrow: string; heading: string; intro: string; items: IconItem[] };
   testimonialSection: { eyebrow: string; heading: string };
   projectSection: { eyebrow: string; heading: string; ctaLabel: string };
@@ -114,6 +120,8 @@ export const DEFAULT_SITE: SiteContent = {
     eyebrow: "THE COLLECTION",
     heading: "Explore by Category",
     ctaLabel: "View all collections",
+    typeHeading: "Shop by Furniture Type",
+    materialHeading: "Shop by Material",
   },
   why: {
     eyebrow: "WHY CHOOSE US?",

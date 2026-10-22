@@ -17,6 +17,24 @@ function moveItem<T>(arr: T[], from: number, to: number): T[] {
   return next;
 }
 
+/** Standard categories offered by "Add standard categories". Existing ids are skipped. */
+const STANDARD_CATEGORIES: { id: string; name: string; group: "type" | "material" }[] = [
+  { id: "sofas", name: "Sofas", group: "type" },
+  { id: "beds", name: "Beds", group: "type" },
+  { id: "dining-tables", name: "Dining Tables", group: "type" },
+  { id: "coffee-tables", name: "Coffee Tables", group: "type" },
+  { id: "restaurant-tables", name: "Restaurant Tables", group: "type" },
+  { id: "dining-chairs", name: "Dining Chairs", group: "type" },
+  { id: "side-tables", name: "Side Tables", group: "type" },
+  { id: "daybeds", name: "Daybeds & Loungers", group: "type" },
+  { id: "bar-stools", name: "Bar Stools", group: "type" },
+  { id: "balcony-sets", name: "Balcony Sets", group: "type" },
+  { id: "solid-wood", name: "Solid Wood Furniture", group: "material" },
+  { id: "fabric", name: "Fabric Furniture", group: "material" },
+  { id: "metal", name: "Metal Furniture", group: "material" },
+  { id: "rope-wicker", name: "Rope & Wicker Furniture", group: "material" },
+];
+
 export function CatalogEditor({ initial }: { initial: Catalog }) {
   const router = useRouter();
   const [cats, setCats] = useState<CatalogCategory[]>(() => clone(initial));
@@ -55,6 +73,21 @@ export function CatalogEditor({ initial }: { initial: Catalog }) {
       { id: `category-${d.length + 1}`, name: "New category", hero: "", visible: true, products: [] },
     ]);
     flash("Category added — scroll down, rename it and add images");
+  };
+  const setGroup = (i: number, group: "type" | "material") =>
+    mutate((d) => d.map((c, ci) => (ci === i ? { ...c, group } : c)));
+  const addStandard = () => {
+    const have = new Set(cats.map((c) => c.id));
+    const toAdd = STANDARD_CATEGORIES.filter((s) => !have.has(s.id));
+    if (!toAdd.length) {
+      flash("All standard categories already exist");
+      return;
+    }
+    mutate((d) => [
+      ...d,
+      ...toAdd.map((s) => ({ id: s.id, name: s.name, hero: "", visible: true, group: s.group, products: [] })),
+    ]);
+    flash(`${toAdd.length} categories added — upload images, then Save`);
   };
   const moveCat = (i: number, dir: number) => mutate((d) => moveItem(d, i, i + dir));
   const renameCat = (i: number, name: string) =>
@@ -154,6 +187,7 @@ export function CatalogEditor({ initial }: { initial: Catalog }) {
         <div className="catalogTopActions">
           <a href="/" target="_blank" rel="noreferrer">Preview site ↗</a>
           <button type="button" onClick={addCategory}>+ Add category</button>
+          <button type="button" onClick={addStandard}>+ Add standard categories</button>
           {dirty && (
             <button type="button" onClick={discard}>Discard</button>
           )}
@@ -179,6 +213,15 @@ export function CatalogEditor({ initial }: { initial: Catalog }) {
                 maxLength={80}
                 onChange={(e) => renameCat(ci, e.target.value)}
               />
+              <select
+                className="catGroupSel"
+                value={cat.group === "material" ? "material" : "type"}
+                onChange={(e) => setGroup(ci, e.target.value as "type" | "material")}
+                title="Where this category appears on the front page"
+              >
+                <option value="type">Furniture type</option>
+                <option value="material">Material</option>
+              </select>
               <label className="catVis">
                 <input type="checkbox" checked={cat.visible} onChange={() => toggleCat(ci)} /> Show on site
               </label>

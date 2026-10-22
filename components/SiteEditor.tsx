@@ -177,7 +177,12 @@ export function SiteEditor({ initial }: { initial: Content }) {
           <label>Eyebrow<input value={site.collectionSection.eyebrow} onChange={(e) => patch((d) => { d.collectionSection.eyebrow = e.target.value; })} /></label>
           <label>Heading<input value={site.collectionSection.heading} onChange={(e) => patch((d) => { d.collectionSection.heading = e.target.value; })} /></label>
         </div>
+        <div className="cmsCard__inline">
+          <label>“By furniture type” sub-heading<input value={site.collectionSection.typeHeading} onChange={(e) => patch((d) => { d.collectionSection.typeHeading = e.target.value; })} /></label>
+          <label>“By material” sub-heading<input value={site.collectionSection.materialHeading} onChange={(e) => patch((d) => { d.collectionSection.materialHeading = e.target.value; })} /></label>
+        </div>
         <label>“View all” button label<input value={site.collectionSection.ctaLabel} onChange={(e) => patch((d) => { d.collectionSection.ctaLabel = e.target.value; })} /></label>
+        <p className="catalogIntro">Add categories and choose whether each is a furniture type or a material in <a href="/admin/catalog">Catalog &amp; Categories</a>.</p>
 
         {/* WHY CHOOSE US */}
         <h2>“Why Choose Us” section</h2>
